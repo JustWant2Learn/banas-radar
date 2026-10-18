@@ -1,0 +1,308 @@
+{
+  "app": {
+    "name": "Banas Radar",
+    "tagline": "Alam mo kung saan mainit.",
+    "description": "Tingnan kung saan sa Pilipinas delikado ang init ngayon at manatiling ligtas."
+  },
+  "nav": {
+    "radar": "Radar",
+    "cool": "Palamig",
+    "you": "Ikaw",
+    "saved": "Naka-save",
+    "guide": "First Aid"
+  },
+  "category": {
+    "safe": "Ligtas",
+    "caution": "Mag-ingat",
+    "extremeCaution": "Lubos na Mag-ingat",
+    "danger": "Delikado",
+    "extremeDanger": "Lubhang Delikado"
+  },
+  "tip": {
+    "safe": "Maganda ang panahon! Magdala pa rin ng tubig kung matagal sa labas.",
+    "caution": "Medyo mainit. Uminom ng tubig nang madalas at magpahinga sa lilim.",
+    "extremeCaution": "Grabe ang banas! Iwasan ang labas mula 10 AM hanggang 4 PM at uminom ng tubig.",
+    "danger": "Delikado na. Manatili muna sa loob, bantayan ang matatanda at mga bata, at mag-ingat sa heat exhaustion.",
+    "extremeDanger": "Malamang ang heat stroke. Huwag lumabas. Kung may nahihilo o nalilito, tumawag sa 911."
+  },
+  "map": {
+    "title": "Heat radar",
+    "scanning": "Ini-scan ang init…",
+    "updated": "Na-update {time}",
+    "loadError": "Hindi ma-load ang heat data ngayon. Subukan ulit o tingnan ang koneksyon mo.",
+    "offline": "Offline ka. Ipinapakita ang huling datos na na-save.",
+    "retry": "Subukan ulit",
+    "legend": "Gabay sa heat index",
+    "legendAria": "Gabay sa heat index. Kulay at label ng bawat kategorya ng PAGASA.",
+    "legendShow": "Ipakita ang gabay",
+    "legendHide": "Itago ang gabay",
+    "circleAria": "{place}: heat index {hi}°C, {category}",
+    "yourLocation": "Lokasyon mo",
+    "locate": "Gamitin ang lokasyon ko",
+    "locating": "Hinahanap ka…",
+    "search": "Maghanap ng lugar",
+    "searchPlaceholder": "Lungsod, lalawigan, o rehiyon",
+    "searchEmpty": "Walang katugmang lugar.",
+    "searchHint": "Mag-type ng hindi bababa sa dalawang letra.",
+    "locationDenied": "Naka-off ang location, kaya nasa Metro Manila ang sentro.",
+    "heatIndex": "Heat index",
+    "feelsLike": "Pakiramdam",
+    "actual": "Temperatura {temp}°C · Halumigmig {rh}%",
+    "viewForecast": "Tingnan ang hourly forecast",
+    "close": "Isara",
+    "highest": "Pinakamataas",
+    "lowest": "Pinakamababa",
+    "hottestInArea": "Pinakamainit: {place}, {value}°",
+    "thisSpot": "Spot na ito",
+    "interpolatedSpot": "Interpolated heat index sa {lat}°N, {lon}°E",
+    "level": {
+      "region": "Rehiyon",
+      "province": "Lalawigan",
+      "city": "Lungsod / bayan"
+    }
+  },
+  "common": {
+    "loading": "Naglo-load…",
+    "degrees": "{value}°C"
+  },
+  "comingSoon": {
+    "savedTitle": "Mga naka-save na lugar",
+    "savedBody": "Sunod: i-save ang bahay, school, at work para makita agad ang heat levels. Radar muna tayo.",
+    "guideTitle": "Gabay sa first aid",
+    "guideBody": "Sunod: heat exhaustion vs heat stroke, at Call 911 button na gumagana kahit offline. Radar muna tayo."
+  },
+  "cooling": {
+    "title": "Mga cooling center malapit sa'yo",
+    "description": "Hanapin ang malapit na mall, library, LGU hall, at water refill kapag delikado na ang init.",
+    "heading": "Hanap ng malamig na lugar",
+    "body": "Aircon malls, libraries, LGU halls, at water refill — galing sa OpenStreetMap.",
+    "scanning": "Naghahanap ng malamig na spot…",
+    "retry": "Hanapin ulit",
+    "loadError": "Hindi namin mahanap ang cooling centers ngayon. Subukan ulit mamaya.",
+    "empty": "Walang nahanap sa {km} km. Subukan ang mas malayo o ibang filter.",
+    "offline": "Offline ka. Ipinapakita ang huling listahan kung meron.",
+    "locationDenied": "Naka-off ang location, kaya Metro Manila ang hinahanap.",
+    "locate": "Hanapin malapit sa'kin",
+    "locating": "Hinahanap ka…",
+    "farther": "Mas malayo (12 km)",
+    "nearer": "Mas malapit (6 km)",
+    "directions": "Direksyon",
+    "hours": "Oras",
+    "walk": "Mga {minutes} min lakad",
+    "distanceM": "{value} m",
+    "distanceKm": "{value} km",
+    "count": "{count, plural, one {# malamig na spot} other {# malamig na spot}}",
+    "osm": "Map data © OpenStreetMap",
+    "seedNote": "Busy ang OpenStreetMap, kaya well-known cooling places muna ang listahan. Subukan ulit sa loob ng isang minuto.",
+    "kindAll": "Lahat",
+    "kind": {
+      "mall": "Mall",
+      "library": "Library",
+      "lgu": "LGU / hall",
+      "water": "Tubig"
+    },
+    "kindHint": {
+      "mall": "Aircon na shopping mall",
+      "library": "Pampublikong library",
+      "lgu": "Town hall o community center",
+      "water": "Inuming tubig o refill station"
+    }
+  },
+  "vulnerable": {
+    "title": "Heat safety para sa'yo",
+    "description": "Mas maagang payo sa init kung senior ka, may bata, buntis, o nagtatrabaho sa labas.",
+    "heading": "Sino ang bantayan natin?",
+    "body": "Pareho pa rin ang kulay ng PAGASA. Mas delikado lang ang init para sa'yo — mas maagang pahinga, mas maraming tubig, mas malamig na lugar.",
+    "bannerTitle": "Naka-on ang extra-care mode",
+    "bannerBody": "Mas mainit ang turing namin sa init ngayon para kay {groups}.",
+    "openMode": "Heat mode mo",
+    "clear": "I-off ang extra care",
+    "treatAs": "Para sa'yo, ituring itong {category}",
+    "official": "Opisyal na PAGASA",
+    "personal": "Para sa'yo",
+    "shiftNote": "Nagdadagdag kami ng {degrees}°C kapag kina-classify ang init para sa grupo mo.",
+    "findCool": "Hanap ng cooling center",
+    "group": {
+      "senior": "Matatanda",
+      "child": "Mga bata",
+      "pregnant": "Buntis",
+      "outdoorWorker": "Outdoor workers"
+    },
+    "groupBody": {
+      "senior": "60 taong gulang pataas — mas mabilis mag-overheat, at puwedeng tumaas ang blood pressure o malito.",
+      "child": "Maliliit na bata at sanggol. Lilim, tubig, at pahinga tuwing 20 minuto.",
+      "pregnant": "Buntis? Extra fluid, iwasan ang araw alas-10 hanggang 4, umupo sa unang hilo.",
+      "outdoorWorker": "Riders, vendors, construction. 15-minutong pahinga sa lilim kada oras, ice water, basang tela sa leeg."
+    },
+    "extra": {
+      "senior": "Matatanda: mag-aircon kung pwede, uminom kahit hindi uhaw, at i-text ang pamilya na okay ka.",
+      "child": "Mas mabilis mag-init ang bata. Lilim, tubig, walang mahabang laro sa tanghali, at huwag iwanan sa parked na sasakyan.",
+      "pregnant": "Buntis: extra fluid, maluwag na damit, at umupo sa unang hilo o pulikat.",
+      "outdoorWorker": "Riders at vendors: magpark sa lilim, 15-minutong break kada oras, ice water, basang tela sa leeg at pulso."
+    }
+  },
+  "firstAid": {
+    "title": "First aid sa init",
+    "description": "I-tick ang mga senyales na nakikita mo. Sasabihin namin kung heat stroke, exhaustion, pulikat, o iba pa — at ano ang gagawin, kasama kung kailan tumawag sa 911.",
+    "heading": "First aid sa init",
+    "body": "I-tick ang bawat senyales na nakikita mo. Sasabihin namin ang posibleng kondisyon at ang gagawin. First aid ito, hindi hospital. Kapag duda, tumawag sa 911.",
+    "checkTitle": "Ano ang nakikita mo?",
+    "checkHint": "I-check lahat na totoo. Isang senyales ay sapat para magsimula.",
+    "checkEmpty": "Mag-tick ng kahit isang senyales para makita ang posibleng kondisyon.",
+    "resultLead": "Posibleng kondisyon",
+    "clearChecks": "I-clear ang checks",
+    "call911": "Tumawag sa 911",
+    "call911Hint": "Gumagana kahit offline. Huwag ibaba ang tawag hangga't hindi sinasabi ng tulong.",
+    "redFlagsTitle": "Tumawag sa 911 ngayon kung…",
+    "redFlags": {
+      "one": "Nalilito, slurred ang salita, may seizure, o hindi nagigising",
+      "two": "Napakainit ng balat, tumigil ang pawis, o hirap huminga",
+      "three": "Nagsusuka at hindi makainom ng tubig",
+      "four": "Sanggol, matanda, o buntis at mabilis lumala"
+    },
+    "disclaimer": "Hindi ito kapalit ng doktor. Ang kulay ng PAGASA ang risk; dito ang gagawin mo.",
+    "signs": "Ano ang makikita",
+    "do": "Gawin ito",
+    "dont": "Huwag gawin",
+    "urgency": {
+      "emergency": "Emergency",
+      "urgent": "Aksyon agad",
+      "watch": "Alagaan sa bahay"
+    },
+    "symptoms": {
+      "confused": "Nalilito, slurred ang salita, o hindi nagigising",
+      "hotSkin": "Napakainit ng balat — tuyo o pawis pa rin",
+      "seizure": "May seizure, o walang malay",
+      "heavySweat": "Sobrang pawis, malamig o clammy ang balat",
+      "dizzy": "Nahihilo, mahina, o masakit ang ulo",
+      "nauseous": "Nasusuka o nagsusuka",
+      "cramps": "Masakit na pulikat sa binti, braso, o tiyan",
+      "thirst": "Uhaw na uhaw, tuyong bibig, o madilim na ihi",
+      "fainted": "Nahimatay o muntik nang mahimatay",
+      "rash": "Makating pulang butlig (bungang-araw)"
+    },
+    "cases": {
+      "heatStroke": {
+        "title": "Heat stroke",
+        "summary": "Hindi na makapagpalamig ang katawan. Puwedeng ikamatay. Tumawag muna sa 911, tapos palamigin.",
+        "signs": {
+          "one": "Nalilito, agitated, may seizure, o walang malay",
+          "two": "Napakainit ng balat — tuyo, o pawis pa rin",
+          "three": "Mabilis ang pulso, masakit ang ulo, o slurred ang salita",
+          "four": "Puwedeng sabihin niyang okay lang siya"
+        },
+        "do": {
+          "one": "Tumawag sa 911. Palamigin habang hinihintay ang tulong.",
+          "two": "Ilipat sa lilim o aircon. Tanggalin ang sobrang damit.",
+          "three": "Basain ang balat, i-fan ng malakas, ice pack sa leeg, kili-kili, at singit.",
+          "four": "Kung gising at makalunok, konting-unting tubig lang."
+        },
+        "dont": {
+          "one": "Huwag painumin o pakainin kung nalilito o walang malay.",
+          "two": "Huwag iwanang mag-isa.",
+          "three": "Huwag umasa sa paracetamol o ibuprofen para “ibaba ang lagnat.” Palamigin ang katawan."
+        }
+      },
+      "heatExhaustion": {
+        "title": "Heat exhaustion",
+        "summary": "Nag-iinit na ang katawan pero lumalaban pa. Gamutin agad para hindi maging heat stroke.",
+        "signs": {
+          "one": "Sobrang pawis, malamig o clammy ang balat",
+          "two": "Mahina, nahihilo, sakit ng ulo, o nasusuka",
+          "three": "Mahina ang kalamnan, mabilis pero mahina ang pulso",
+          "four": "Nakakapagsalita pa at alam kung nasaan siya"
+        },
+        "do": {
+          "one": "Tumigil sa trabaho. Ilipat sa lilim o aircon.",
+          "two": "Paluwagin ang damit. Ihiga, itaas ang paa.",
+          "three": "Painumin ng malamig na tubig o oral rehydration nang paunti-unti.",
+          "four": "Basang tela sa leeg at pulso. Magpahinga nang 30 minuto man lang."
+        },
+        "dont": {
+          "one": "Huwag ibalik sa araw o sa kalsada hangga't hindi normal ang pakiramdam.",
+          "two": "Huwag alak, energy drink, o kape lang ang ipainom.",
+          "three": "Kung walang ginhawa sa 30 minuto, nagsusuka, o nalilito — ituring na heat stroke at tumawag sa 911."
+        }
+      },
+      "heatCramps": {
+        "title": "Heat cramps",
+        "summary": "Masakit na pulikat pagkatapos ng mabigat na trabaho o mahabang biyahe sa init — madalas sa binti, braso, o tiyan.",
+        "signs": {
+          "one": "Biglang masakit at naninigas ang kalamnan",
+          "two": "Sobrang pawis, matigas ang kalamnan",
+          "three": "Gising at alert pa rin"
+        },
+        "do": {
+          "one": "Tumigil. Magpahinga sa malamig na lugar.",
+          "two": "Uminom ng tubig o oral rehydration. Huwag sabay-sabay.",
+          "three": "Dahan-dahang iunat at hawakan ang kalamnan. Okay ang magaan na masahe."
+        },
+        "dont": {
+          "one": "Huwag lumunok ng salt tablet.",
+          "two": "Huwag bumalik agad sa mabigat na trabaho. Ang pulikat plus init puwedeng maging exhaustion."
+        }
+      },
+      "dehydration": {
+        "title": "Dehydration",
+        "summary": "Kulang sa tubig. Karaniwan sa riders, vendors, at kahit sino na naghihintay hanggang uhaw na uhaw.",
+        "signs": {
+          "one": "Uhaw, tuyong bibig, sakit ng ulo",
+          "two": "Madilim na ihi, o wala pang ihi ng ilang oras",
+          "three": "Pagod, nahihilo pag tumayo",
+          "four": "Mas kaunti ang pawis kaysa dati"
+        },
+        "do": {
+          "one": "Umupo sa lilim. Uminom nang madalas — konti pero tuloy-tuloy.",
+          "two": "Oral rehydration kung nahihilo o pagkatapos ng sobrang pawis.",
+          "three": "Kumain ng kaunti (saging, sabaw, kanin) kapag kaya nang mag-hold ng tubig."
+        },
+        "dont": {
+          "one": "Huwag hintayin ang sobrang uhaw. Huli na iyon.",
+          "two": "Huwag soda o alak ang gamitin pang-rehydrate."
+        }
+      },
+      "heatSyncope": {
+        "title": "Pagkahimatay sa init",
+        "summary": "Biglaang hilo o himatay pagkatapos tumayo nang matagal sa araw — bumababa ang dugo sa binti.",
+        "signs": {
+          "one": "Biglang hilo, dumidilim ang paningin, tapos bagsak",
+          "two": "Maputla, pawis, maikling blackout",
+          "three": "Karaniwang gumigising pag nahiga"
+        },
+        "do": {
+          "one": "Ihiga nang tuwid. Itaas ang paa. Ilipat sa malamig.",
+          "two": "Paluwagin ang masikip na damit. I-fan at basang tela.",
+          "three": "Kapag gising na, painumin. Hayaan siyang humiga ng ilang minuto."
+        },
+        "dont": {
+          "one": "Huwag biglang ituwid o papaglakarin agad.",
+          "two": "Huwag painumin o pakainin hangga't hindi fully awake.",
+          "three": "Tumawag sa 911 kung hindi gumising sa isang minuto, natamaan ang ulo, may seizure, o nalilito pa rin."
+        }
+      },
+      "heatRash": {
+        "title": "Bungang-araw",
+        "summary": "Maliliit na makati na butlig kapag naipit ang pawis sa damit. Nakakainis, bihirang emergency.",
+        "signs": {
+          "one": "Maliliit na pulang o malinaw na butlig, nakakakati",
+          "two": "Madalas sa ilalim ng damit, leeg, o fold ng balat",
+          "three": "Mas lumalala sa tanghaling tapat at masikip na damit"
+        },
+        "do": {
+          "one": "Ilipat sa mas malamig at tuyo. Maluwag na cotton na damit.",
+          "two": "Hugasan nang mahinahon, tapunin hanggang tuyo. Palamigin ang balat.",
+          "three": "Kung sobrang kati, puwedeng magpatingin para sa magaan na cream. Bantayan ang infection."
+        },
+        "dont": {
+          "one": "Huwag makapal na ointment o langis na nakatakip sa pawis.",
+          "two": "Huwag kamutin hanggang magdugo. Kung may nana, lagnat, o mabilis kumalat, magpatingin."
+        }
+      }
+    }
+  },
+  "missingPage": {
+    "title": "Walang ganitong page",
+    "body": "Wala iyan sa radar. Balik tayo sa mapa.",
+    "back": "Bumalik sa radar"
+  }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Banas Radar">
+  <rect width="512" height="512" rx="112" fill="#16a34a"/>
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#fff" stroke-width="18" opacity="0.28"/>
+  <circle cx="256" cy="256" r="128" fill="none" stroke="#fff" stroke-width="18" opacity="0.5"/>
+  <circle cx="256" cy="256" r="66" fill="none" stroke="#fff" stroke-width="18"/>
+  <circle cx="256" cy="256" r="22" fill="#fff"/>
+  <path d="M256 256 L256 66 A190 190 0 0 1 430 190 Z" fill="#fff" opacity="0.38"/>
+</svg>

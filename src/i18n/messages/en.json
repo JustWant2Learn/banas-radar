@@ -1,0 +1,308 @@
+{
+  "app": {
+    "name": "Banas Radar",
+    "tagline": "Alam mo kung saan mainit.",
+    "description": "See which parts of the Philippines have dangerous heat right now and stay safe."
+  },
+  "nav": {
+    "radar": "Radar",
+    "cool": "Cool",
+    "you": "You",
+    "saved": "Saved",
+    "guide": "First Aid"
+  },
+  "category": {
+    "safe": "Safe",
+    "caution": "Caution",
+    "extremeCaution": "Extreme Caution",
+    "danger": "Danger",
+    "extremeDanger": "Extreme Danger"
+  },
+  "tip": {
+    "safe": "Nice weather! Still, bring water if you'll be out long.",
+    "caution": "Medyo mainit. Drink water often and take breaks in the shade.",
+    "extremeCaution": "Grabe ang banas! Limit time outside from 10 AM to 4 PM and keep hydrated.",
+    "danger": "Delikado na. Stay indoors muna, check on seniors and kids, and watch for heat exhaustion.",
+    "extremeDanger": "Heat stroke is likely. Avoid going outside. If someone feels dizzy or confused, call 911."
+  },
+  "map": {
+    "title": "Heat radar",
+    "scanning": "Scanning the heat…",
+    "updated": "Updated {time}",
+    "loadError": "We couldn't load heat data right now. Pull down to retry or check your connection.",
+    "offline": "You're offline. Showing the last data we saved.",
+    "retry": "Retry",
+    "legend": "Heat index legend",
+    "legendAria": "Heat index legend. Colours and labels for each PAGASA category.",
+    "legendShow": "Show heat legend",
+    "legendHide": "Hide heat legend",
+    "circleAria": "{place}: heat index {hi}°C, {category}",
+    "yourLocation": "Your location",
+    "locate": "Use my location",
+    "locating": "Finding you…",
+    "search": "Search a place",
+    "searchPlaceholder": "City, province, or region",
+    "searchEmpty": "No matching place.",
+    "searchHint": "Type at least two letters.",
+    "locationDenied": "Location is off, so we centered on Metro Manila.",
+    "heatIndex": "Heat index",
+    "feelsLike": "Feels like",
+    "actual": "Air temp {temp}°C · Humidity {rh}%",
+    "viewForecast": "See hourly forecast",
+    "close": "Close",
+    "highest": "Highest",
+    "lowest": "Lowest",
+    "hottestInArea": "Hottest: {place}, {value}°",
+    "thisSpot": "This spot",
+    "interpolatedSpot": "Interpolated heat index at {lat}°N, {lon}°E",
+    "level": {
+      "region": "Region",
+      "province": "Province",
+      "city": "City / municipality"
+    }
+  },
+  "common": {
+    "loading": "Loading…",
+    "degrees": "{value}°C"
+  },
+  "comingSoon": {
+    "savedTitle": "Saved places",
+    "savedBody": "Next up: i-save ang home, school, at work so you can see heat levels at a glance. Radar muna tayo.",
+    "guideTitle": "First-aid guide",
+    "guideBody": "Next up: heat exhaustion vs heat stroke, plus a Call 911 button that works offline. Radar muna tayo."
+  },
+  "cooling": {
+    "title": "Cooling centers near you",
+    "description": "Find nearby malls, libraries, LGU halls, and water refill points when the heat gets dangerous.",
+    "heading": "Find a cool place",
+    "body": "Aircon malls, libraries, LGU halls, and water refill — from OpenStreetMap.",
+    "scanning": "Looking for cool spots…",
+    "retry": "Search again",
+    "loadError": "Hindi namin mahanap ang cooling centers ngayon. Try again in a bit.",
+    "empty": "Walang nahanap sa {km} km. Try a farther search or another filter.",
+    "offline": "You're offline. Showing the last list we saved, if we have one.",
+    "locationDenied": "Location is off, so we're searching Metro Manila.",
+    "locate": "Search near me",
+    "locating": "Finding you…",
+    "farther": "Search farther (12 km)",
+    "nearer": "Search closer (6 km)",
+    "directions": "Directions",
+    "hours": "Hours",
+    "walk": "About {minutes} min walk",
+    "distanceM": "{value} m",
+    "distanceKm": "{value} km",
+    "count": "{count, plural, one {# cool spot} other {# cool spots}}",
+    "osm": "Map data © OpenStreetMap",
+    "seedNote": "OpenStreetMap is busy, so we listed well-known cooling places nearby. Retry in a minute for a fuller map.",
+    "kindAll": "All",
+    "kind": {
+      "mall": "Mall",
+      "library": "Library",
+      "lgu": "LGU / hall",
+      "water": "Water"
+    },
+    "kindHint": {
+      "mall": "Aircon shopping mall",
+      "library": "Public library",
+      "lgu": "Town hall or community center",
+      "water": "Drinking water or refill station"
+    }
+  },
+  "vulnerable": {
+    "title": "Heat safety for you",
+    "description": "Get stricter heat advice if you are a senior, caring for kids, pregnant, or work outdoors.",
+    "heading": "Who should we watch out for?",
+    "body": "PAGASA colors stay the same. We just treat the heat as more dangerous for you — earlier rest, more water, cooler places.",
+    "bannerTitle": "Extra-care mode is on",
+    "bannerBody": "We treat today's heat as hotter for {groups}.",
+    "openMode": "Your heat mode",
+    "clear": "Turn off extra care",
+    "treatAs": "For you, treat this as {category}",
+    "official": "Official PAGASA",
+    "personal": "For you",
+    "shiftNote": "We add {degrees}°C when we classify heat for your group.",
+    "findCool": "Find a cooling center",
+    "group": {
+      "senior": "Seniors",
+      "child": "Kids",
+      "pregnant": "Pregnant",
+      "outdoorWorker": "Outdoor workers"
+    },
+    "groupBody": {
+      "senior": "Age 60+ — overheat faster, and heat can raise blood pressure or confuse thinking.",
+      "child": "Young kids and babies. Shade, water, and rest every 20 minutes.",
+      "pregnant": "Buntis? Extra fluid, avoid 10 AM–4 PM sun, rest at the first dizzy spell.",
+      "outdoorWorker": "Riders, vendors, construction. 15-min shade break every hour, ice water, wet cloth on the neck."
+    },
+    "extra": {
+      "senior": "Seniors: stay in aircon if you can, sip water even if you're not thirsty, and text family you're okay.",
+      "child": "Kids overheat faster. Shade, water, no long noon play, and never leave anyone in a parked vehicle.",
+      "pregnant": "Buntis: extra fluid, loose clothes, and sit down at the first dizzy or cramp.",
+      "outdoorWorker": "Riders at vendors: park in shade, 15-min break every hour, ice water, wet cloth on neck and wrists."
+    }
+  },
+  "firstAid": {
+    "title": "Heat first aid",
+    "description": "Tick the signs you see. We'll name heat stroke, exhaustion, cramps, and more — and tell you what to do, including when to call 911.",
+    "heading": "Heat first aid",
+    "body": "Tick every sign you see. We'll name the likely condition and what to do. This is first aid, not a hospital. When in doubt, tumawag sa 911.",
+    "checkTitle": "What do you see?",
+    "checkHint": "Check all that apply. One sign is enough to start.",
+    "checkEmpty": "Tick at least one sign to see the likely condition.",
+    "resultLead": "Likely condition",
+    "clearChecks": "Clear checks",
+    "call911": "Call 911",
+    "call911Hint": "Works even if you're offline. Stay on the line until help says you can hang up.",
+    "redFlagsTitle": "Call 911 now if…",
+    "redFlags": {
+      "one": "Confused, slurred speech, seizure, or hindi nagigising",
+      "two": "Very hot skin, stopped sweating, or breathing is hard",
+      "three": "Vomiting and cannot keep water down",
+      "four": "A baby, senior, or buntis is getting worse fast"
+    },
+    "disclaimer": "Not a substitute for a doctor. PAGASA heat categories tell you the risk; this page tells you what to do.",
+    "signs": "What you’ll see",
+    "do": "Do this",
+    "dont": "Don’t do this",
+    "urgency": {
+      "emergency": "Emergency",
+      "urgent": "Act now",
+      "watch": "Home care"
+    },
+    "symptoms": {
+      "confused": "Confused, slurred speech, or won't wake up",
+      "hotSkin": "Skin is very hot — dry or still sweating",
+      "seizure": "Seizure, or they are unconscious",
+      "heavySweat": "Heavy sweat, cold or clammy skin",
+      "dizzy": "Dizzy, weak, or a bad headache",
+      "nauseous": "Nauseous or vomiting",
+      "cramps": "Painful muscle cramps in legs, arms, or belly",
+      "thirst": "Very thirsty, dry mouth, or dark urine",
+      "fainted": "They fainted or almost fainted",
+      "rash": "Itchy red bumps (bungang-araw)"
+    },
+    "cases": {
+      "heatStroke": {
+        "title": "Heat stroke",
+        "summary": "The body cannot cool down. This can kill. Call 911 first, then cool the person.",
+        "signs": {
+          "one": "Confused, agitated, seizure, or unconscious",
+          "two": "Very hot skin — dry, or still sweating",
+          "three": "Fast pulse, throbbing headache, or slurred speech",
+          "four": "They may deny they are sick"
+        },
+        "do": {
+          "one": "Call 911. Cool them while you wait.",
+          "two": "Move to shade or aircon. Take off extra clothes.",
+          "three": "Wet the skin, fan hard, ice packs on neck, armpits, and groin.",
+          "four": "If they are awake and can swallow, small sips of water only."
+        },
+        "dont": {
+          "one": "Don’t give food or drinks if they are confused or unconscious.",
+          "two": "Don’t leave them alone.",
+          "three": "Don’t use paracetamol or ibuprofen to “bring the fever down.” Cool the body instead."
+        }
+      },
+      "heatExhaustion": {
+        "title": "Heat exhaustion",
+        "summary": "The body is overheating but still fighting. Treat it now so it does not become heat stroke.",
+        "signs": {
+          "one": "Heavy sweat, cold or clammy skin",
+          "two": "Weak, dizzy, headache, or nauseous",
+          "three": "Muscle weakness, fast weak pulse",
+          "four": "They can still talk and know where they are"
+        },
+        "do": {
+          "one": "Stop work. Move to shade or aircon.",
+          "two": "Loosen clothes. Lie down, elevate the legs.",
+          "three": "Sip cool water or oral rehydration every few minutes.",
+          "four": "Wet cloth on neck and wrists. Rest at least 30 minutes."
+        },
+        "dont": {
+          "one": "Don’t send them back to the sun or the road until they feel normal.",
+          "two": "Don’t give alcohol, energy drinks, or coffee as the only fluid.",
+          "three": "If no improvement in 30 minutes, or they vomit or get confused — treat as heat stroke and call 911."
+        }
+      },
+      "heatCramps": {
+        "title": "Heat cramps",
+        "summary": "Painful muscle spasms after hard work or long rides in the heat — often legs, arms, or belly.",
+        "signs": {
+          "one": "Sudden tight, painful spasms during or after work",
+          "two": "Sweating a lot, muscles feel hard",
+          "three": "They are still alert"
+        },
+        "do": {
+          "one": "Stop the activity. Rest in a cool place.",
+          "two": "Sip water or oral rehydration. Don’t chug.",
+          "three": "Gently stretch and hold the muscle. Light massage is okay."
+        },
+        "dont": {
+          "one": "Don’t swallow salt tablets.",
+          "two": "Don’t go back to heavy work the same hour. Cramp plus more heat can become exhaustion."
+        }
+      },
+      "dehydration": {
+        "title": "Dehydration",
+        "summary": "Not enough water. Common for riders, vendors, and anyone who waits until they are very thirsty.",
+        "signs": {
+          "one": "Thirst, dry mouth, headache",
+          "two": "Dark yellow urine, or wala pang ihi for hours",
+          "three": "Tired, dizzy when they stand",
+          "four": "Less sweat than usual"
+        },
+        "do": {
+          "one": "Sit in shade. Sip water often — small and steady.",
+          "two": "Use oral rehydration if dizzy or after heavy sweat.",
+          "three": "Eat a little (banana, soup, rice) once they can keep fluids down."
+        },
+        "dont": {
+          "one": "Don’t wait for extreme thirst. That’s already late.",
+          "two": "Don’t use soda or alcohol to rehydrate."
+        }
+      },
+      "heatSyncope": {
+        "title": "Heat fainting",
+        "summary": "Biglaang hilo or nahimatay after standing long in the sun — blood pools in the legs.",
+        "signs": {
+          "one": "Sudden dizziness, tunnel vision, then collapse",
+          "two": "Pale, sweaty, brief blackout",
+          "three": "Usually wakes up after lying down"
+        },
+        "do": {
+          "one": "Lay them flat. Elevate the legs. Cool place.",
+          "two": "Loosen tight clothes. Fan and wet cloth.",
+          "three": "When fully awake, sip water. Stay down for several minutes."
+        },
+        "dont": {
+          "one": "Don’t sit them up fast or make them walk it off.",
+          "two": "Don’t give food or drink until they are fully awake.",
+          "three": "Call 911 if they don’t wake in one minute, hit their head, have a seizure, or stay confused."
+        }
+      },
+      "heatRash": {
+        "title": "Heat rash (bungang-araw)",
+        "summary": "Tiny itchy bumps when sweat is trapped under clothes. Uncomfortable, usually not an emergency.",
+        "signs": {
+          "one": "Small red or clear bumps, prickly itch",
+          "two": "Often under the shirt, neck, or skin folds",
+          "three": "Worse in noon heat and tight clothes"
+        },
+        "do": {
+          "one": "Move to a cooler, drier place. Loose cotton clothes.",
+          "two": "Wash gently, pat dry. Let skin breathe.",
+          "three": "If very itchy, a doctor can suggest a light cream. Watch for infection."
+        },
+        "dont": {
+          "one": "Don’t use thick ointment or oil that blocks sweat.",
+          "two": "Don’t scratch until it bleeds. If it gets pus, fever, or spreads fast, see a clinic."
+        }
+      }
+    }
+  },
+  "missingPage": {
+    "title": "Page not found",
+    "body": "That screen isn’t on the radar. Balik tayo sa map.",
+    "back": "Back to radar"
+  }
+}
