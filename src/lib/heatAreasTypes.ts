@@ -72,7 +72,7 @@ export function normalizeAreaMeta(value: AreaMeta): AreaMeta {
 
 export function isAreaReading(value: unknown): value is AreaReading {
   if (!isAreaMeta(value)) return false;
-  const v = value as Record<string, unknown>;
+  const v = value as unknown as Record<string, unknown>;
   return (
     typeof v.temperatureC === "number" &&
     typeof v.humidity === "number" &&

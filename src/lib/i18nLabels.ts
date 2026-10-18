@@ -1,10 +1,11 @@
-import type { useTranslations } from "next-intl";
+import type { _Translator as Translator } from "use-intl/core";
+import type en from "@/i18n/messages/en.json";
 import type { AreaLevel } from "./psgc";
 import type { CoolingKind } from "./cooling";
 import type { FirstAidCaseId, FirstAidSymptomId, FirstAidUrgency } from "./firstAid";
 import type { VulnerableGroupId } from "./vulnerable";
 
-type Translate = ReturnType<typeof useTranslations>;
+export type Translate = Translator<typeof en>;
 
 export function coolingKindLabel(t: Translate, kind: CoolingKind): string {
   if (kind === "mall") return t("cooling.kind.mall");

@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { MapFlyTo } from "@/lib/mapFeatures";
-import type { AreaLevel } from "@/lib/psgc";
+import { areaLevelLabel } from "@/lib/i18nLabels";
 import { useHeatStore } from "@/store/useHeatStore";
 import { useLocationStore } from "@/store/useLocationStore";
 import { useOnline } from "@/hooks/useOnline";
@@ -19,12 +19,6 @@ import { MapLegend } from "./MapLegend";
 import { PlaceSearch } from "./PlaceSearch";
 import { PlaceStrip } from "./PlaceStrip";
 import { RadarSweep } from "./RadarSweep";
-
-function areaLevelLabel(t: ReturnType<typeof useTranslations>, level: AreaLevel): string {
-  if (level === "region") return t("map.level.region");
-  if (level === "province") return t("map.level.province");
-  return t("map.level.city");
-}
 
 const RadarMap = dynamic(() => import("./RadarMap"), {
   ssr: false,
