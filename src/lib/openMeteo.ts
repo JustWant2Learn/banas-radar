@@ -135,6 +135,8 @@ export interface CurrentSample {
 interface FetchCurrentOptions {
   /** Return the samples collected so far instead of throwing on a 429. */
   allowPartial?: boolean;
+  /** Stop before the next batch once this timestamp (ms) is reached. */
+  deadlineAt?: number;
 }
 
 /** Current-only fetch for centroids. No hourly series, no browser cache. */
@@ -151,7 +153,12 @@ export async function fetchCurrentForPoints(
       current: "temperature_2m,relative_humidity_2m",
       timezone: TIMEZONE,
     });
-    if (i > 0) await sleep(800);
+    if (i > 0) {
+      if (options.deadlineAt !== undefined && Date.now() >= options.deadlineAt && samples.length > 0) {
+        return samples;
+      }
+      await sleep(800);
+    }
     const response = await fetchOpenMeteo(`${BASE_URL}?${params.toString()}`);
     if (!response.ok) {
       if (options.allowPartial && response.status === 429 && samples.length > 0) {

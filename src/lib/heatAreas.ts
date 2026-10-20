@@ -16,9 +16,10 @@ import { getSupabaseAdmin } from "./supabaseAdmin";
 const FILE_CACHE = path.join(process.cwd(), ".next", "cache", "heat-areas-v2.json");
 const SAMPLE_CACHE = path.join(process.cwd(), ".next", "cache", "heat-city-samples.json");
 const SAMPLE_TTL_MS = 70 * 60 * 1000;
+const REFRESH_BUDGET_MS = 90_000;
 
 let memoryPayload: HeatAreasPayload | null = null;
-let inflight: Promise<HeatAreasPayload> | null = null;
+let inflight: Promise<HeatRefreshProgress> | null = null;
 
 export async function getLatestHeatAreas(): Promise<HeatAreasPayload | null> {
   if (memoryPayload) return memoryPayload;
@@ -50,7 +51,19 @@ export async function getLatestHeatAreas(): Promise<HeatAreasPayload | null> {
   return payload;
 }
 
-export async function refreshHeatAreas(): Promise<HeatAreasPayload> {
+export interface HeatRefreshProgress {
+  complete: boolean;
+  samples: number;
+  needed: number;
+  recordedAt: string;
+  published: HeatAreasPayload | null;
+}
+
+export function isMostlyCompleteCounts(have: number, needed: number): boolean {
+  return needed === 0 || have >= needed - 10;
+}
+
+export async function advanceHeatRefresh(): Promise<HeatRefreshProgress> {
   if (inflight) return inflight;
   inflight = buildHeatAreas().finally(() => {
     inflight = null;
@@ -58,22 +71,42 @@ export async function refreshHeatAreas(): Promise<HeatAreasPayload> {
   return inflight;
 }
 
+export async function refreshHeatAreas(): Promise<HeatAreasPayload> {
+  const result = await advanceHeatRefresh();
+  if (result.published) return result.published;
+  const existing = await getLatestHeatAreas();
+  if (existing) return existing;
+  throw new Error("Heat refresh is still collecting city samples");
+}
+
 export async function isMostlyComplete(payload: HeatAreasPayload): Promise<boolean> {
   const catalog = await loadAreaCatalog();
   const needed = catalog.filter((area) => area.level === "city").length;
   const have = Object.values(payload.areas).filter((area) => area.level === "city").length;
-  return needed === 0 || have >= needed - 10;
+  return isMostlyCompleteCounts(have, needed);
 }
 
-async function buildHeatAreas(): Promise<HeatAreasPayload> {
+async function buildHeatAreas(): Promise<HeatRefreshProgress> {
   const catalog = await loadAreaCatalog();
   logParentSamplePoints(catalog);
 
   const cities = catalog.filter((area) => area.level === "city");
-  const citySamples = await collectCitySamples(cities);
-  const recordedAt = citySamples.recordedAt;
-  const payload = assembleHeatAreas(catalog, citySamples.samples, recordedAt);
+  const citySamples = await collectCitySamples(cities, Date.now() + REFRESH_BUDGET_MS);
+  const complete = isMostlyCompleteCounts(citySamples.samples.length, cities.length);
+  if (!complete) {
+    console.info(
+      `[heat] checkpoint ${citySamples.samples.length}/${cities.length} recorded_at=${citySamples.recordedAt}`,
+    );
+    return {
+      complete: false,
+      samples: citySamples.samples.length,
+      needed: cities.length,
+      recordedAt: citySamples.recordedAt,
+      published: memoryPayload,
+    };
+  }
 
+  const payload = assembleHeatAreas(catalog, citySamples.samples, citySamples.recordedAt);
   memoryPayload = payload;
   await writeFileCache(payload);
   try {
@@ -81,7 +114,13 @@ async function buildHeatAreas(): Promise<HeatAreasPayload> {
   } catch (error) {
     console.warn("[heat] Supabase persist failed; serving the in-memory batch anyway.", error);
   }
-  return payload;
+  return {
+    complete: true,
+    samples: citySamples.samples.length,
+    needed: cities.length,
+    recordedAt: citySamples.recordedAt,
+    published: payload,
+  };
 }
 
 async function persistReadings(readings: readonly AreaReading[]): Promise<void> {
@@ -190,12 +229,17 @@ interface CitySampleCache {
   samples: CachedCitySample[];
 }
 
-async function collectCitySamples(cities: readonly AreaMeta[]): Promise<{
+async function collectCitySamples(
+  cities: readonly AreaMeta[],
+  deadlineAt: number,
+): Promise<{
   recordedAt: string;
   samples: CitySample[];
 }> {
   const byPsgc = new Map(cities.map((city) => [city.psgc, city]));
-  const cache = await readSampleCache();
+  const stored = await readSampleCache();
+  const cache =
+    stored && !isMostlyCompleteCounts(stored.samples.length, cities.length) ? stored : null;
   const collected = new Map<string, CitySample>();
   if (cache) {
     for (const item of cache.samples) {
@@ -212,7 +256,7 @@ async function collectCitySamples(cities: readonly AreaMeta[]): Promise<{
 
   const pending = cities.filter((city) => !collected.has(city.psgc));
   if (pending.length > 0) {
-    const samples = await fetchCurrentForPoints(pending, { allowPartial: true });
+    const samples = await fetchCurrentForPoints(pending, { allowPartial: true, deadlineAt });
     const count = Math.min(pending.length, samples.length);
     for (let i = 0; i < count; i++) {
       const meta = pending[i];
@@ -228,7 +272,7 @@ async function collectCitySamples(cities: readonly AreaMeta[]): Promise<{
 
   const recordedAt = cache?.recordedAt ?? new Date().toISOString();
   const samples = [...collected.values()];
-  await writeSampleCache({
+  const saved = await writeSampleCache({
     recordedAt,
     samples: samples.map((sample) => ({
       psgc: sample.meta.psgc,
@@ -237,6 +281,11 @@ async function collectCitySamples(cities: readonly AreaMeta[]): Promise<{
       heatIndexC: sample.heatIndexC,
     })),
   });
+  if (!isMostlyCompleteCounts(samples.length, cities.length) && !saved) {
+    throw new Error(
+      "Could not persist the heat sample checkpoint. Apply the heat_sample_checkpoint migration and set SUPABASE_SERVICE_ROLE_KEY.",
+    );
+  }
   console.info(`[heat] city samples ${samples.length}/${cities.length} recorded_at=${recordedAt}`);
   return { recordedAt, samples };
 }
@@ -247,25 +296,66 @@ function isCitySampleCache(value: unknown): value is CitySampleCache {
   return typeof v.recordedAt === "string" && Array.isArray(v.samples);
 }
 
+function isFreshCache(cache: CitySampleCache): boolean {
+  const age = Date.now() - Date.parse(cache.recordedAt);
+  return Number.isFinite(age) && age <= SAMPLE_TTL_MS;
+}
+
 async function readSampleCache(): Promise<CitySampleCache | null> {
+  const fromDb = await readSampleCheckpointDb();
+  if (fromDb && isFreshCache(fromDb)) return fromDb;
   try {
     const raw: unknown = JSON.parse(await readFile(SAMPLE_CACHE, "utf8"));
-    if (!isCitySampleCache(raw)) return null;
-    const age = Date.now() - Date.parse(raw.recordedAt);
-    if (!Number.isFinite(age) || age > SAMPLE_TTL_MS) return null;
+    if (!isCitySampleCache(raw) || !isFreshCache(raw)) return null;
     return raw;
   } catch {
     return null;
   }
 }
 
-async function writeSampleCache(cache: CitySampleCache): Promise<void> {
+async function writeSampleCache(cache: CitySampleCache): Promise<boolean> {
   try {
     await mkdir(path.dirname(SAMPLE_CACHE), { recursive: true });
     await writeFile(SAMPLE_CACHE, JSON.stringify(cache));
   } catch {
     // Optional local cache.
   }
+  return writeSampleCheckpointDb(cache);
+}
+
+async function readSampleCheckpointDb(): Promise<CitySampleCache | null> {
+  const admin = getSupabaseAdmin();
+  if (!admin) return null;
+  const { data, error } = await admin
+    .from("heat_sample_checkpoint")
+    .select("recorded_at, samples")
+    .eq("id", 1)
+    .maybeSingle();
+  if (error || !data) return null;
+  return cacheFromRow(data);
+}
+
+function cacheFromRow(value: unknown): CitySampleCache | null {
+  if (typeof value !== "object" || value === null) return null;
+  const row = value as Record<string, unknown>;
+  const cache = { recordedAt: row.recorded_at, samples: row.samples };
+  return isCitySampleCache(cache) ? cache : null;
+}
+
+async function writeSampleCheckpointDb(cache: CitySampleCache): Promise<boolean> {
+  const admin = getSupabaseAdmin();
+  if (!admin) return false;
+  const { error } = await admin.from("heat_sample_checkpoint").upsert({
+    id: 1,
+    recorded_at: cache.recordedAt,
+    samples: cache.samples,
+    updated_at: new Date().toISOString(),
+  });
+  if (error) {
+    console.warn("[heat] Could not save sample checkpoint to Supabase.", error.message);
+    return false;
+  }
+  return true;
 }
 
 async function readFileCache(): Promise<HeatAreasPayload | null> {

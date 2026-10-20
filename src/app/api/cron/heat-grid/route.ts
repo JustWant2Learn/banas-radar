@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { refreshHeatAreas } from "@/lib/heatAreas";
+import { advanceHeatRefresh } from "@/lib/heatAreas";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,14 +17,17 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const payload = await refreshHeatAreas();
+    const result = await advanceHeatRefresh();
     return Response.json({
       ok: true,
-      generatedAt: payload.generatedAt,
-      recordedAt: payload.recordedAt,
-      areas: Object.keys(payload.areas).length,
-      hottest: payload.hottest.name,
-      coolest: payload.coolest.name,
+      complete: result.complete,
+      samples: result.samples,
+      needed: result.needed,
+      recordedAt: result.recordedAt,
+      generatedAt: result.published?.generatedAt ?? result.recordedAt,
+      areas: result.published ? Object.keys(result.published.areas).length : result.samples,
+      hottest: result.published?.hottest.name ?? null,
+      coolest: result.published?.coolest.name ?? null,
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";

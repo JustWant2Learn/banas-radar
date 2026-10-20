@@ -8,17 +8,30 @@ on:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
-      - name: Call heat cron endpoint
+      - name: Collect city samples in chunks
         env:
           APP_URL: ${{ secrets.APP_URL }}
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
+          set -euo pipefail
           if [ -z "$APP_URL" ] || [ -z "$CRON_SECRET" ]; then
             echo "Set GitHub Actions secrets APP_URL and CRON_SECRET."
             exit 1
           fi
-          curl --fail-with-body --show-error --silent --max-time 130 \
-            -H "Authorization: Bearer ${CRON_SECRET}" \
-            "${APP_URL%/}/api/cron/heat-grid"
+          url="${APP_URL%/}/api/cron/heat-grid"
+          for i in $(seq 1 20); do
+            echo "Heat refresh pass $i"
+            body="$(curl --fail-with-body --show-error --silent --max-time 110 \
+              -H "Authorization: Bearer ${CRON_SECRET}" \
+              "$url")"
+            echo "$body"
+            complete="$(python3 -c 'import json,sys; print(json.load(sys.stdin).get("complete", False))' <<<"$body")"
+            if [ "$complete" = "True" ]; then
+              echo "Heat refresh complete."
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Checkpoint saved; the next hourly run will continue."
